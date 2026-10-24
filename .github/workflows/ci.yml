@@ -129,7 +129,7 @@ jobs:
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | skopeo login ghcr.io --username "${{ github.actor }}" --password-stdin
       - name: Copy image to staging (без пересборки!)
-        run: skopeo copy docker://${{ env.IMAGE }}:${{ env.TAG }} docker://${{ env.IMAGE }}-staging:${{ env.TAG }}
+        run: skopeo copy --all docker://${{ env.IMAGE }}:${{ env.TAG }} docker://${{ env.IMAGE }}-staging:${{ env.TAG }}
       - name: Verify staging digest
         run: |
           SRC=$(skopeo inspect docker://${{ env.IMAGE }}:${{ env.TAG }} --format '{{.Digest}}')
