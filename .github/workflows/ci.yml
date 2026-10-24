@@ -62,21 +62,21 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Trivy full report
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: image
           image-ref: ${{ env.IMAGE }}:${{ env.SHORT_SHA }}
           format: table
           output: trivy-report.txt
       - name: SBOM (CycloneDX)
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: image
           image-ref: ${{ env.IMAGE }}:${{ env.SHORT_SHA }}
           format: cyclonedx
           output: sbom.json
       - name: Trivy quality gate
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: image
           image-ref: ${{ env.IMAGE }}:${{ env.SHORT_SHA }}
