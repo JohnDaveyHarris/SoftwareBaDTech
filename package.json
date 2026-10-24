@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "lint": "eslint src tests",
-    "test": "jest --coverage",
+    "test": "jest tests/unit --coverage",
+    "test:integration": "jest tests/integration",
+    "test:integration:serial": "jest tests/integration --runInBand",
     "build": "node -e \"console.log('Building...')\""
   },
   "jest": {
@@ -25,12 +27,15 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1",
-    "lodash": "^4.18.1"
+    "lodash": "^4.18.1",
+    "pg": "^8.23.1",
+    "redis": "^6.3.0"
   },
   "devDependencies": {
     "eslint": "^10.11.0",
     "globals": "^17.12.0",
     "jest": "^30.5.2",
-    "supertest": "^7.2.2"
+    "supertest": "^7.2.2",
+    "testcontainers": "^12.2.1"
   }
 }
